@@ -32,9 +32,6 @@ RUN mkdir -p database \
 EXPOSE 10000
 
 # Start command: generate key, migrate, seed, then serve
-CMD php artisan key:generate --force \
-    && php artisan migrate --force \
+CMD php artisan migrate --force \
     && php artisan db:seed --force \
-    && php artisan config:cache \
-    && php artisan route:cache \
     && php artisan serve --host 0.0.0.0 --port $PORT
